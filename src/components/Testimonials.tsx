@@ -1,6 +1,7 @@
 import { Star, Quote } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { TESTIMONIALS } from "@/lib/shop-data";
+import { upperEl } from "@/lib/utils";
 
 export function Testimonials() {
   return (
@@ -23,7 +24,7 @@ export function Testimonials() {
                     ))}
                   </div>
                   <cite className="mt-2 block font-display text-lg not-italic">
-                    {item.name}
+                    {upperEl(item.name)}
                   </cite>
                 </footer>
               </blockquote>

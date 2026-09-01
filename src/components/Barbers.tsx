@@ -1,5 +1,6 @@
 import { Instagram } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
+import { upperEl } from "@/lib/utils";
 import barber1 from "@/assets/barber-1.jpg";
 import barber2 from "@/assets/barber-2.jpg";
 import barber3 from "@/assets/barber-3.jpg";
@@ -55,7 +56,7 @@ export function Barbers() {
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl">{barber.name}</h3>
+                  <h3 className="text-2xl">{upperEl(barber.name)}</h3>
                   <p className="mt-1 text-xs uppercase tracking-[0.25em] text-primary">
                     {barber.role}
                   </p>

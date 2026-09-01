@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { upperEl } from "@/lib/utils";
 
 /** Scroll-triggered fade + slide-up wrapper. */
 export function Reveal({
@@ -57,8 +58,8 @@ export function SectionHeading({
 }) {
   return (
     <Reveal className="mx-auto max-w-2xl text-center">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">{title}</h2>
+      <p className="eyebrow">{upperEl(eyebrow)}</p>
+      <h2 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">{upperEl(title)}</h2>
       <div className="diamond-divider mt-5">
         <span className="diamond-mark" />
       </div>

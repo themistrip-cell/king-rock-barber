@@ -2,14 +2,13 @@
 
 export const SHOP = {
   name: "King Of Rock Barbershop",
-  address: "Λεωφ. Ηρακλείου 514, Ηράκλειο, Κρήτη",
+  address: "Λεωφ. Ηρακλείου 514, Νέο Ηράκλειο, 141 22",
   phone: "+30 000 000 0000", // PLACEHOLDER
   whatsapp: "300000000000", // PLACEHOLDER (χωρίς + και κενά)
   instagram: "https://www.instagram.com/", // PLACEHOLDER
   facebook: "https://www.facebook.com/", // PLACEHOLDER
-  mapsEmbed:
-    "https://www.google.com/maps?q=King+Of+Rock+Barbershop+Heraklion+Crete&output=embed",
-  mapsLink: "https://www.google.com/maps?q=King+Of+Rock+Barbershop+Heraklion",
+  mapsEmbed: `https://www.google.com/maps?q=${encodeURIComponent("Λεωφ. Ηρακλείου 514, Νέο Ηράκλειο 141 22")}&z=17&output=embed`,
+  mapsLink: `https://www.google.com/maps?q=${encodeURIComponent("Λεωφ. Ηρακλείου 514, Νέο Ηράκλειο 141 22")}`,
 };
 
 export type Service = {
@@ -94,7 +93,7 @@ export const HOURS: { day: string; hours: string }[] = [
 export const TESTIMONIALS = [
   {
     name: "Γιώργος Μ.",
-    text: "Μπαίνεις για κούρεμα, βγαίνεις με διάθεση για συναυλία. Ο καλύτερος fade στο Ηράκλειο.",
+    text: "Μπαίνεις για κούρεμα, βγαίνεις με διάθεση για συναυλία. Ο καλύτερος fade στο Νέο Ηράκλειο.",
     rating: 5,
   },
   {

@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { upperEl } from "@/lib/utils";
 import guitar from "@/assets/guitar.jpg";
 import motorcycle from "@/assets/motorcycle.jpg";
 import amp from "@/assets/amp.jpg";
@@ -10,7 +11,7 @@ const STRIP = [
   { src: motorcycle, alt: "Vintage μοντέλο μοτοσυκλέτας στον πάγκο του κουρείου" },
   { src: amp, alt: "Ενισχυτής Marshall δίπλα σε ξύλινο βαρέλι" },
   { src: chair, alt: "Πολυθρόνα barber μπροστά σε καθρέφτη και τούβλα" },
-  { src: storefront, alt: "Η βιτρίνα του King Of Rock Barbershop στο Ηράκλειο" },
+  { src: storefront, alt: "Η βιτρίνα του King Of Rock Barbershop στο Νέο Ηράκλειο" },
 ];
 
 export function About() {
@@ -18,11 +19,11 @@ export function About() {
     <section id="about" className="texture-grain relative py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
         <Reveal>
-          <p className="eyebrow">Το Μαγαζί</p>
+          <p className="eyebrow">{upperEl("Το Μαγαζί")}</p>
           <h2 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">
-            Ροκ ψυχή,
+            {upperEl("Ροκ ψυχή,")}
             <br />
-            κουρείο παλιάς κοπής
+            {upperEl("κουρείο παλιάς κοπής")}
           </h2>
           <div className="diamond-divider mt-6">
             <span className="diamond-mark" />
@@ -34,8 +35,8 @@ export function About() {
           </p>
           <p className="mt-4 text-muted-foreground">
             Έρχεσαι για ένα fade, μένεις για την κουβέντα. Αυτό είναι το King Of
-            Rock — ένα μαγαζί στο Ηράκλειο που μυρίζει aftershave και ακούγεται
-            σαν δισκοπωλείο.
+            Rock — ένα μαγαζί στο Νέο Ηράκλειο που μυρίζει aftershave και
+            ακούγεται σαν δισκοπωλείο.
           </p>
           <dl className="mt-9 grid grid-cols-3 gap-6">
             {[
@@ -46,7 +47,7 @@ export function About() {
               <div key={item.k}>
                 <dt className="font-display text-3xl text-primary">{item.k}</dt>
                 <dd className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
-                  {item.v}
+                  {upperEl(item.v)}
                 </dd>
               </div>
             ))}
@@ -73,7 +74,7 @@ export function About() {
             ))}
           </div>
           <p className="mt-2 text-center text-xs uppercase tracking-widest text-muted-foreground lg:hidden">
-            Σύρε για περισσότερα →
+            {upperEl("Σύρε για περισσότερα →")}
           </p>
         </Reveal>
       </div>

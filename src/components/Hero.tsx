@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import interior from "@/assets/interior-chairs.jpg";
 import emblem from "@/assets/emblem.png";
+import { upperEl } from "@/lib/utils";
 
 /*
  * Tagline alternatives:
@@ -41,7 +42,7 @@ export function Hero() {
       >
         <img
           src={interior}
-          alt="Το εσωτερικό του King Of Rock Barbershop στο Ηράκλειο με πολυθρόνες barber, τούβλα και ντραμς"
+          alt="Το εσωτερικό του King Of Rock Barbershop στο Νέο Ηράκλειο με πολυθρόνες barber, τούβλα και ντραμς"
           className="h-full w-full object-cover"
           fetchPriority="high"
         />
@@ -61,8 +62,8 @@ export function Hero() {
           src={emblem}
           alt=""
           aria-hidden="true"
-          width={1024}
-          height={1024}
+          width={1085}
+          height={916}
           className="cine-line mx-auto h-24 w-24 object-contain opacity-90 sm:h-28 sm:w-28"
           style={{ animationDelay: "0.5s" }}
         />
@@ -82,18 +83,18 @@ export function Hero() {
           className="cine-line mx-auto mt-7 max-w-xl text-lg text-muted-foreground"
           style={{ animationDelay: "1.05s" }}
         >
-          Εκεί που το ροκ συναντά το ξυράφι. Κουρείο παλιάς κοπής στο Ηράκλειο —
-          τούβλα, δέρμα, κιθάρες και κουρέματα χωρίς εκπτώσεις.
+          Εκεί που το ροκ συναντά το ξυράφι. Κουρείο παλιάς κοπής στο Νέο
+          Ηράκλειο — τούβλα, δέρμα, κιθάρες και κουρέματα χωρίς εκπτώσεις.
         </p>
         <div
           className="cine-line mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
           style={{ animationDelay: "1.2s" }}
         >
           <a href="#booking" className="btn-base btn-hero w-full sm:w-auto">
-            Κλείσε Ραντεβού
+            {upperEl("Κλείσε Ραντεβού")}
           </a>
           <a href="#services" className="btn-base btn-outline w-full sm:w-auto">
-            Δες τις Υπηρεσίες
+            {upperEl("Δες τις Υπηρεσίες")}
           </a>
         </div>
       </div>

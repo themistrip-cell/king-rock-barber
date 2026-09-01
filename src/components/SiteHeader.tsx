@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import emblem from "@/assets/emblem.png";
+import { upperEl } from "@/lib/utils";
 
 const NAV = [
   { href: "#about", label: "Το Μαγαζί" },
@@ -42,8 +43,8 @@ export function SiteHeader() {
           <img
             src={emblem}
             alt="Έμβλημα King Of Rock Barbershop"
-            width={1024}
-            height={1024}
+            width={1085}
+            height={916}
             className="h-11 w-11 object-contain"
           />
           <span className="font-display text-lg leading-none tracking-wide sm:text-xl">
@@ -61,11 +62,11 @@ export function SiteHeader() {
               href={item.href}
               className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
             >
-              {item.label}
+              {upperEl(item.label)}
             </a>
           ))}
           <a href="#booking" className="btn-base btn-hero px-5 py-2.5 text-sm">
-            Κλείσε Ραντεβού
+            {upperEl("Κλείσε Ραντεβού")}
           </a>
         </nav>
 
@@ -95,7 +96,7 @@ export function SiteHeader() {
               className="border-b border-border py-4 font-display text-2xl text-foreground transition-colors hover:text-primary"
               style={{ transitionDelay: `${i * 30}ms` }}
             >
-              {item.label}
+              {upperEl(item.label)}
             </a>
           ))}
           <a
@@ -103,13 +104,13 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
             className="btn-base btn-hero mt-6"
           >
-            Κλείσε Ραντεβού
+            {upperEl("Κλείσε Ραντεβού")}
           </a>
           <a
             href="tel:+300000000000"
             className="btn-base btn-outline mt-3 gap-2"
           >
-            <Phone size={16} /> Τηλεφώνησε
+            <Phone size={16} /> {upperEl("Τηλεφώνησε")}
           </a>
         </nav>
       </div>

@@ -1,6 +1,7 @@
 import { Scissors } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { SERVICES } from "@/lib/shop-data";
+import { upperEl } from "@/lib/utils";
 
 export function Services() {
   return (
@@ -24,7 +25,7 @@ export function Services() {
                     <span className="grid h-10 w-10 place-items-center rounded-sm border border-border text-primary transition-colors group-hover:border-primary">
                       <Scissors size={18} />
                     </span>
-                    <h3 className="text-xl">{service.name}</h3>
+                    <h3 className="text-xl">{upperEl(service.name)}</h3>
                   </div>
                   <span className="font-display text-2xl text-primary">
                     {service.price}
@@ -34,7 +35,7 @@ export function Services() {
                   {service.description}
                 </p>
                 <p className="mt-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  Διάρκεια {service.duration}
+                  {upperEl(`Διάρκεια ${service.duration}`)}
                 </p>
               </div>
             </Reveal>
@@ -43,7 +44,7 @@ export function Services() {
 
         <Reveal className="mt-12 text-center">
           <a href="#booking" className="btn-base btn-hero">
-            Κλείσε Ραντεβού
+            {upperEl("Κλείσε Ραντεβού")}
           </a>
         </Reveal>
       </div>

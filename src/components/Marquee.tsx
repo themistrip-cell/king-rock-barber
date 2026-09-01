@@ -1,3 +1,5 @@
+import { upperEl } from "@/lib/utils";
+
 type MarqueeProps = {
   items: string[];
   /** seconds for one full loop */
@@ -23,7 +25,7 @@ export function Marquee({ items, speed = 22, variant = "solid" }: MarqueeProps) 
               variant === "outline" ? "marquee-outline" : ""
             }`}
           >
-            {item}
+            {upperEl(item)}
           </span>
           <span className="diamond-mark shrink-0" />
         </span>

@@ -77,17 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "King Of Rock Barbershop | Κουρείο στο Ηράκλειο" },
+      { title: "King Of Rock Barbershop | Κουρείο στο Νέο Ηράκλειο" },
       {
         name: "description",
         content:
-          "Rock 'n' roll barbershop στο Ηράκλειο Κρήτης — κούρεμα, γένια, ξύρισμα με πετσέτα και online ραντεβού.",
+          "Rock 'n' roll barbershop στο Νέο Ηράκλειο — κούρεμα, γένια, ξύρισμα με πετσέτα και online ραντεβού.",
       },
       { name: "author", content: "King Of Rock Barbershop" },
       { property: "og:title", content: "King Of Rock Barbershop" },
       {
         property: "og:description",
-        content: "Κουρείο με ροκ ψυχή στο Ηράκλειο Κρήτης. Κλείσε ραντεβού online.",
+        content: "Κουρείο με ροκ ψυχή στο Νέο Ηράκλειο. Κλείσε ραντεβού online.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

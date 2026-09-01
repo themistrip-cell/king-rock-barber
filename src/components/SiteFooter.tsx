@@ -1,6 +1,7 @@
 import { Instagram, Facebook } from "lucide-react";
 import emblem from "@/assets/emblem.png";
 import { SHOP, HOURS } from "@/lib/shop-data";
+import { upperEl } from "@/lib/utils";
 
 const LINKS = [
   { href: "#about", label: "Το Μαγαζί" },
@@ -21,8 +22,8 @@ export function SiteFooter() {
               src={emblem}
               alt="King Of Rock Barbershop"
               loading="lazy"
-              width={1024}
-              height={1024}
+              width={1085}
+              height={916}
               className="h-14 w-14 object-contain"
             />
             <span className="font-display text-xl leading-none">
@@ -33,7 +34,7 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="mt-5 max-w-xs text-sm text-muted-foreground">
-            Κουρείο με ροκ ψυχή στο Ηράκλειο Κρήτης. {SHOP.address}
+            Κουρείο με ροκ ψυχή στο Νέο Ηράκλειο. {SHOP.address}
           </p>
           <div className="mt-5 flex gap-3">
             <a href={SHOP.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="btn-base btn-outline px-3 py-2">
@@ -46,7 +47,7 @@ export function SiteFooter() {
         </div>
 
         <nav>
-          <h2 className="text-lg">Πλοήγηση</h2>
+          <h2 className="text-lg">{upperEl("Πλοήγηση")}</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {LINKS.map((link) => (
               <li key={link.href}>
@@ -59,7 +60,7 @@ export function SiteFooter() {
         </nav>
 
         <div>
-          <h2 className="text-lg">Ωράριο</h2>
+          <h2 className="text-lg">{upperEl("Ωράριο")}</h2>
           <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
             {HOURS.map((row) => (
               <li key={row.day} className="flex justify-between gap-4">
@@ -76,7 +77,7 @@ export function SiteFooter() {
           <span className="diamond-mark" />
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} King Of Rock Barbershop — Ηράκλειο, Κρήτη.
+          © {new Date().getFullYear()} King Of Rock Barbershop — Νέο Ηράκλειο, Αθήνα.
           Όλα τα δικαιώματα διατηρούνται.
         </p>
       </div>

@@ -1,6 +1,7 @@
 import { MapPin, Phone, Clock, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { SHOP, HOURS } from "@/lib/shop-data";
+import { upperEl } from "@/lib/utils";
 
 export function Contact() {
   return (
@@ -15,7 +16,7 @@ export function Contact() {
           <Reveal className="lg:col-span-2">
             <div className="card-rock h-full overflow-hidden">
               <iframe
-                title="Χάρτης — King Of Rock Barbershop, Ηράκλειο"
+                title="Χάρτης — King Of Rock Barbershop, Νέο Ηράκλειο"
                 src={SHOP.mapsEmbed}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -26,7 +27,7 @@ export function Contact() {
 
           <Reveal delay={120}>
             <div className="card-rock h-full p-6">
-              <h3 className="text-2xl">Στοιχεία</h3>
+              <h3 className="text-2xl">{upperEl("Στοιχεία")}</h3>
               <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
                 <li className="flex gap-3">
                   <MapPin size={18} className="mt-0.5 shrink-0 text-primary" />
@@ -43,7 +44,7 @@ export function Contact() {
               </ul>
 
               <h3 className="mt-8 flex items-center gap-2 text-xl">
-                <Clock size={18} className="text-primary" /> Ωράριο
+                <Clock size={18} className="text-primary" /> {upperEl("Ωράριο")}
               </h3>
               <table className="mt-4 w-full text-sm">
                 <tbody>

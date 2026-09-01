@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Reveal, SectionHeading } from "./Reveal";
 import { SERVICES, TIME_SLOTS, SHOP } from "@/lib/shop-data";
 import { BARBERS } from "./Barbers";
+import { upperEl } from "@/lib/utils";
 
 const STEPS = ["Υπηρεσία", "Barber", "Ημέρα & Ώρα", "Στοιχεία", "Έτοιμο"];
 const NO_PREFERENCE = "Χωρίς προτίμηση";
@@ -114,7 +115,7 @@ export function Booking() {
               ))}
             </ol>
             <p className="mt-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              Βήμα {Math.min(step + 1, 5)} / 5 — {STEPS[step]}
+              {upperEl(`Βήμα ${Math.min(step + 1, 5)} / 5 — ${STEPS[step]}`)}
             </p>
 
             <div key={step} className="mt-7 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -133,7 +134,7 @@ export function Booking() {
                       }`}
                     >
                       <span className="flex items-center justify-between gap-3">
-                        <span className="font-display text-lg">{item.name}</span>
+                        <span className="font-display text-lg">{upperEl(item.name)}</span>
                         <span className="font-display text-primary">{item.price}</span>
                       </span>
                       <span className="mt-1 block text-xs uppercase tracking-widest text-muted-foreground">
@@ -158,7 +159,7 @@ export function Booking() {
                         barber === option ? "border-primary bg-primary/10" : "border-border"
                       }`}
                     >
-                      {option}
+                      {upperEl(option)}
                     </button>
                   ))}
                 </div>
@@ -251,7 +252,7 @@ export function Booking() {
                   <div className="rounded-sm border border-border bg-background/50 p-4 text-sm">
                     <p className="text-muted-foreground">Σύνοψη</p>
                     <p className="mt-2 font-display text-lg">
-                      {service} · {barber}
+                      {upperEl(service)} · {upperEl(barber)}
                     </p>
                     <p className="text-primary">
                       {date} στις {slot}
@@ -265,7 +266,7 @@ export function Booking() {
               {step === 4 ? (
                 <div className="py-6 text-center">
                   <CalendarCheck className="mx-auto text-primary" size={44} />
-                  <h3 className="mt-4 text-3xl">Το ραντεβού καταχωρήθηκε</h3>
+                  <h3 className="mt-4 text-3xl">{upperEl("Το ραντεβού καταχωρήθηκε")}</h3>
                   <p className="mt-3 text-muted-foreground">
                     {name}, σε περιμένουμε {date} στις {slot} για {service.toLowerCase()}
                     {barber !== NO_PREFERENCE ? ` με τον ${barber}` : ""}. Θα σε πάρουμε
@@ -273,10 +274,10 @@ export function Booking() {
                   </p>
                   <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
                     <button type="button" onClick={reset} className="btn-base btn-outline">
-                      Νέο ραντεβού
+                      {upperEl("Νέο ραντεβού")}
                     </button>
                     <a href={`tel:${SHOP.phone.replace(/\s/g, "")}`} className="btn-base btn-hero">
-                      Κάλεσέ μας
+                      {upperEl("Κάλεσέ μας")}
                     </a>
                   </div>
                 </div>
@@ -291,7 +292,7 @@ export function Booking() {
                   disabled={step === 0}
                   className="btn-base btn-outline px-4 py-2.5 text-sm disabled:cursor-not-allowed disabled:opacity-30"
                 >
-                  <ChevronLeft size={16} /> Πίσω
+                  <ChevronLeft size={16} /> {upperEl("Πίσω")}
                 </button>
                 <button
                   type="button"
@@ -300,7 +301,7 @@ export function Booking() {
                   className="btn-base btn-hero px-6 py-2.5 text-sm disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   {saving ? <Loader2 className="animate-spin" size={16} /> : null}
-                  {step === 3 ? "Επιβεβαίωση" : "Συνέχεια"}
+                  {upperEl(step === 3 ? "Επιβεβαίωση" : "Συνέχεια")}
                 </button>
               </div>
             ) : null}

@@ -11,10 +11,11 @@ import { Contact } from "@/components/Contact";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Marquee } from "@/components/Marquee";
 import { SHOP } from "@/lib/shop-data";
+import { upperEl } from "@/lib/utils";
 
-const title = "King Of Rock Barbershop | Κουρείο στο Ηράκλειο Κρήτης";
+const title = "King Of Rock Barbershop | Κουρείο στο Νέο Ηράκλειο";
 const description =
-  "Rock 'n' roll barbershop στο Ηράκλειο Κρήτης. Κούρεμα, γένια και ξύρισμα με ζεστή πετσέτα. Κλείσε ραντεβού online στο King Of Rock Barbershop.";
+  "Rock 'n' roll barbershop στο Νέο Ηράκλειο. Κούρεμα, γένια και ξύρισμα με ζεστή πετσέτα. Κλείσε ραντεβού online στο King Of Rock Barbershop.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,8 +38,9 @@ export const Route = createFileRoute("/")({
           address: {
             "@type": "PostalAddress",
             streetAddress: "Λεωφ. Ηρακλείου 514",
-            addressLocality: "Ηράκλειο",
-            addressRegion: "Κρήτη",
+            addressLocality: "Νέο Ηράκλειο",
+            addressRegion: "Αττική",
+            postalCode: "141 22",
             addressCountry: "GR",
           },
           telephone: SHOP.phone,
@@ -59,10 +61,10 @@ function Index() {
         <Marquee
           items={[
             "King Of Rock",
-            "Κουρείο • Ηράκλειο",
+            "Κουρείο • Νέο Ηράκλειο",
             "Rock 'n' Roll",
             "Κλείσε Ραντεβού",
-            "Est. στο Ηράκλειο",
+            "Est. στο Νέο Ηράκλειο",
           ]}
         />
         <About />
@@ -90,7 +92,7 @@ function Index() {
         href="#booking"
         className="btn-base btn-hero fixed inset-x-4 bottom-4 z-40 shadow-lg lg:hidden"
       >
-        Κλείσε Ραντεβού
+        {upperEl("Κλείσε Ραντεβού")}
       </a>
     </div>
   );
