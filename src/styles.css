@@ -1,0 +1,322 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * King Of Rock Barbershop — design system.
+ * Rock 'n' roll meets old-school barbershop: charcoal blacks, copper accent,
+ * deep stage-light red, warm off-white type. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --font-display: "Anton", "Oswald", system-ui, sans-serif;
+  --font-sans: "Barlow", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.145 0.005 60);
+  --foreground: oklch(0.94 0.012 80);
+  --card: oklch(0.196 0.008 60);
+  --card-foreground: oklch(0.94 0.012 80);
+  --popover: oklch(0.196 0.008 60);
+  --popover-foreground: oklch(0.94 0.012 80);
+  /* copper / burnt orange — matches the shop sign */
+  --primary: oklch(0.63 0.126 48);
+  --primary-foreground: oklch(0.145 0.005 60);
+  --secondary: oklch(0.26 0.01 60);
+  --secondary-foreground: oklch(0.94 0.012 80);
+  --muted: oklch(0.24 0.008 60);
+  --muted-foreground: oklch(0.68 0.015 70);
+  --accent: oklch(0.45 0.17 25);
+  --accent-foreground: oklch(0.96 0.01 80);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.96 0.01 80);
+  --border: oklch(0.3 0.012 60);
+  --input: oklch(0.3 0.012 60);
+  --ring: oklch(0.63 0.126 48);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@layer components {
+  /* Grain + subtle warm vignette used on section backgrounds */
+  .texture-grain {
+    position: relative;
+  }
+  .texture-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .stage-glow {
+    background:
+      radial-gradient(60% 50% at 50% 0%, oklch(0.63 0.126 48 / 0.16), transparent 70%),
+      radial-gradient(40% 40% at 85% 90%, oklch(0.45 0.17 25 / 0.14), transparent 70%);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  /* Diamond razor emblem motif for dividers */
+  .diamond-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .diamond-divider::before,
+  .diamond-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-border),
+      transparent
+    );
+  }
+  .diamond-mark {
+    width: 0.6rem;
+    height: 0.6rem;
+    rotate: 45deg;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0 12px oklch(0.63 0.126 48 / 0.6);
+  }
+
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .btn-hero {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    box-shadow: 0 0 0 oklch(0.63 0.126 48 / 0);
+  }
+  .btn-hero:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 32px oklch(0.63 0.126 48 / 0.4);
+  }
+  .btn-outline {
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+  .btn-ghost-red:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  .card-rock {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .card-rock:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-primary);
+    box-shadow: 0 16px 40px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.63 0.126 48 / 0.25);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --- Cinematic hero intro: one signature moment, GPU-only properties --- */
+  .cine-curtain {
+    animation: cine-curtain 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes cine-curtain {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .cine-plate {
+    animation: cine-plate 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes cine-plate {
+    from {
+      transform: scale(1.28);
+      filter: brightness(0.35);
+    }
+    to {
+      transform: scale(1.15);
+      filter: brightness(1);
+    }
+  }
+
+  .cine-line {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: cine-line 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes cine-line {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+
+  /* --- Marquee ticker (inspired by don-barber.gr, rock flavored) --- */
+  .marquee-track {
+    animation-name: marquee-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  @keyframes marquee-scroll {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  .marquee-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-primary);
+  }
+
+
+
+  .field {
+    width: 100%;
+    background: oklch(0.18 0.006 60);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem;
+    color: var(--color-foreground);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .field:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px oklch(0.63 0.126 48 / 0.2);
+  }
+  .field::placeholder {
+    color: var(--color-muted-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .cine-plate,
+  .cine-line,
+  .cine-curtain,
+  .marquee-track {
+    animation: none;
+  }
+  .cine-line {
+    opacity: 1;
+    transform: none;
+  }
+  .cine-curtain {
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
