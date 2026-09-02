@@ -58,15 +58,6 @@ function Index() {
       <SiteHeader />
       <main>
         <Hero />
-        <Marquee
-          items={[
-            "King Of Rock",
-            "Κουρείο • Νέο Ηράκλειο",
-            "Rock 'n' Roll",
-            "Κλείσε Ραντεβού",
-            "Est. στο Νέο Ηράκλειο",
-          ]}
-        />
         <About />
         <Services />
         <Barbers />
@@ -90,9 +81,9 @@ function Index() {
       {/* Sticky mobile CTA */}
       <a
         href="#booking"
-        className="btn-base btn-hero fixed inset-x-4 bottom-4 z-40 shadow-lg lg:hidden"
+        className="btn-base btn-hero btn-pole fixed inset-x-4 bottom-4 z-40 shadow-lg lg:hidden"
       >
-        {upperEl("Κλείσε Ραντεβού")}
+        <span>{upperEl("Κλείσε Ραντεβού")}</span>
       </a>
     </div>
   );

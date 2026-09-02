@@ -45,6 +45,7 @@ export function Gallery() {
         <SectionHeading
           eyebrow="Behind the Chair"
           title="Gallery"
+          titleVariant="script"
           subtitle="Το μαγαζί, τα εργαλεία και η δουλειά μας."
         />
 

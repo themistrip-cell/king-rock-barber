@@ -13,6 +13,7 @@ export function Services() {
         <SectionHeading
           eyebrow="Τιμοκατάλογος"
           title="Υπηρεσίες"
+          titleVariant="script"
           subtitle="Καθαρές τιμές, χωρίς αστερίσκους. Πληρωμή σε μετρητά ή κάρτα."
         />
 
@@ -43,8 +44,8 @@ export function Services() {
         </ul>
 
         <Reveal className="mt-12 text-center">
-          <a href="#booking" className="btn-base btn-hero">
-            {upperEl("Κλείσε Ραντεβού")}
+          <a href="#booking" className="btn-base btn-hero btn-pole">
+            <span>{upperEl("Κλείσε Ραντεβού")}</span>
           </a>
         </Reveal>
       </div>

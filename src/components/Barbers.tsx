@@ -37,6 +37,7 @@ export function Barbers() {
         <SectionHeading
           eyebrow="Η Ομάδα"
           title="Οι Barbers"
+          titleVariant="script"
           subtitle="Πραγματικοί τεχνίτες, όχι γραμμή παραγωγής."
         />
 

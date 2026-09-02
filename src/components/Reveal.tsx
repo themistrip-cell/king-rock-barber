@@ -51,15 +51,26 @@ export function SectionHeading({
   eyebrow,
   title,
   subtitle,
+  titleVariant = "display",
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  /** "script" renders the title in its natural case with the EB Garamond italic accent face — an italic serif keeps its shape (and its Greek glyphs) where a Latin-only cursive font would lose both in all-caps. */
+  titleVariant?: "display" | "script";
 }) {
   return (
     <Reveal className="mx-auto max-w-2xl text-center">
       <p className="eyebrow">{upperEl(eyebrow)}</p>
-      <h2 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">{upperEl(title)}</h2>
+      <h2
+        className={
+          titleVariant === "script"
+            ? "mt-3 font-script italic font-medium normal-case text-5xl leading-[1.05] text-primary sm:text-6xl"
+            : "mt-3 text-4xl leading-[1.05] sm:text-5xl"
+        }
+      >
+        {titleVariant === "script" ? title : upperEl(title)}
+      </h2>
       <div className="diamond-divider mt-5">
         <span className="diamond-mark" />
       </div>

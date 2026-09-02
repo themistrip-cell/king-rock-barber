@@ -65,8 +65,8 @@ export function SiteHeader() {
               {upperEl(item.label)}
             </a>
           ))}
-          <a href="#booking" className="btn-base btn-hero px-5 py-2.5 text-sm">
-            {upperEl("Κλείσε Ραντεβού")}
+          <a href="#booking" className="btn-base btn-outline px-5 py-2.5 text-sm">
+            <span>{upperEl("Κλείσε Ραντεβού")}</span>
           </a>
         </nav>
 
@@ -104,7 +104,7 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
             className="btn-base btn-hero mt-6"
           >
-            {upperEl("Κλείσε Ραντεβού")}
+            <span>{upperEl("Κλείσε Ραντεβού")}</span>
           </a>
           <a
             href="tel:+300000000000"

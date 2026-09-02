@@ -18,6 +18,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --font-display: "Anton", "Oswald", system-ui, sans-serif;
   --font-sans: "Barlow", system-ui, sans-serif;
+  --font-script: "EB Garamond", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -175,6 +176,69 @@
   .btn-hero:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 10px 32px oklch(0.63 0.126 48 / 0.4);
+  }
+  /* Animated barber-pole stripes for the primary "Κλείσε Ραντεβού" CTA.
+     The gradient is drawn un-rotated ("to right") on an oversized, centered
+     ::before and the diagonal look + motion both come from `transform`
+     (rotate + translateX), never from `background-position` — animating
+     background-position repaints every frame off the main thread and reads
+     as janky; transform is GPU-composited, so the loop stays smooth. The
+     translateX distance (48px) equals exactly one gradient cycle *in the
+     pseudo-element's own pre-rotation space*, so the loop has no seam to
+     round — it's exact by construction, not by decimal approximation.
+     A static ::after scrim sits between the stripes and the label for text
+     contrast. Pseudo-element order is fixed (::before, then real children,
+     then ::after) — left to default stacking that puts ::after *in front of*
+     the label, not behind it, so all three layers carry explicit z-index to
+     force stripes → scrim → label regardless of source order. */
+  .btn-hero.btn-pole {
+    position: relative;
+    overflow: hidden;
+    color: var(--color-foreground);
+  }
+  .btn-hero.btn-pole::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background-image: repeating-linear-gradient(
+      to right,
+      oklch(0.53 0.19 25) 0px,
+      oklch(0.53 0.19 25) 16px,
+      oklch(0.94 0.012 80) 16px,
+      oklch(0.94 0.012 80) 32px,
+      oklch(0.42 0.1 250) 32px,
+      oklch(0.42 0.1 250) 48px
+    );
+    animation: btn-pole-scroll 2.8s linear infinite;
+    will-change: transform;
+  }
+  .btn-hero.btn-pole::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background: oklch(0.145 0.005 60 / 0.58);
+  }
+  .btn-hero.btn-pole > * {
+    position: relative;
+    z-index: 3;
+  }
+  @keyframes btn-pole-scroll {
+    from {
+      transform: translate(-50%, -50%) rotate(45deg) translateX(0);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(45deg) translateX(-48px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-hero.btn-pole::before {
+      animation: none;
+    }
   }
   .btn-outline {
     border: 1px solid var(--color-border);

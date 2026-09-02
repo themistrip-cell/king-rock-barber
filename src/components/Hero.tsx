@@ -58,27 +58,18 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-28 text-center">
-        <img
-          src={emblem}
-          alt=""
-          aria-hidden="true"
-          width={1085}
-          height={916}
-          className="cine-line mx-auto h-24 w-24 object-contain opacity-90 sm:h-28 sm:w-28"
-          style={{ animationDelay: "0.5s" }}
-        />
-        <h1
-          className="cine-line mt-6 font-display text-6xl leading-[0.9] sm:text-8xl lg:text-9xl"
-          style={{ animationDelay: "0.7s" }}
-        >
-          King Of Rock
-        </h1>
-        <p
-          className="cine-line mt-4 text-xs tracking-[0.7em] text-primary sm:text-base"
-          style={{ animationDelay: "0.9s" }}
-        >
-          BARBERSHOP
-        </p>
+        <div className="relative min-h-80 sm:min-h-[30rem] lg:min-h-[36rem]">
+          <img
+            src={emblem}
+            alt=""
+            aria-hidden="true"
+            width={1085}
+            height={916}
+            className="cine-line pointer-events-none absolute inset-0 m-auto h-80 w-auto object-contain opacity-55 sm:h-[30rem] lg:h-[36rem]"
+            style={{ animationDelay: "0.5s" }}
+          />
+          <h1 className="sr-only">King Of Rock Barbershop</h1>
+        </div>
         <p
           className="cine-line mx-auto mt-7 max-w-xl text-lg text-muted-foreground"
           style={{ animationDelay: "1.05s" }}
@@ -90,8 +81,8 @@ export function Hero() {
           className="cine-line mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
           style={{ animationDelay: "1.2s" }}
         >
-          <a href="#booking" className="btn-base btn-hero w-full sm:w-auto">
-            {upperEl("Κλείσε Ραντεβού")}
+          <a href="#booking" className="btn-base btn-hero btn-pole w-full sm:w-auto">
+            <span>{upperEl("Κλείσε Ραντεβού")}</span>
           </a>
           <a href="#services" className="btn-base btn-outline w-full sm:w-auto">
             {upperEl("Δες τις Υπηρεσίες")}
