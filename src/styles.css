@@ -180,14 +180,20 @@
     box-shadow: 0 10px 32px oklch(0.63 0.126 48 / 0.4);
   }
   /* Animated barber-pole stripes for the primary "Κλείσε Ραντεβού" CTA.
-     The gradient is drawn un-rotated ("to right") on an oversized, centered
-     ::before and the diagonal look + motion both come from `transform`
-     (rotate + translateX), never from `background-position` — animating
-     background-position repaints every frame off the main thread and reads
-     as janky; transform is GPU-composited, so the loop stays smooth. The
-     translateX distance (48px) equals exactly one gradient cycle *in the
-     pseudo-element's own pre-rotation space*, so the loop has no seam to
-     round — it's exact by construction, not by decimal approximation.
+     The gradient is pre-angled (45deg) and the motion comes from animating
+     background-position along the gradient's own repeat axis. The offset
+     (48 / sin(45°) ≈ 67.88px, moved horizontally only) is the exact distance
+     that shifts the pattern by one full 48px cycle, so the loop has no seam.
+     An earlier version rotated an oversized ::before via `transform` instead
+     (for compositor-only animation), but that combination — a will-change
+     transform child clipped by the parent's overflow:hidden, plus a
+     clip-path added on top for mobile WebKit — hit a Safari bug where the
+     rounded clip and the animated transform fight each other, freezing the
+     animation and misplacing the stripes. Animating background-position
+     sidesteps the whole clip/transform interaction: each pseudo-element
+     fills the button's own box exactly (inset: 0) and carries its own
+     `border-radius: inherit`, so its background clips to the rounded
+     corners natively via background-clip, no overflow/clip-path needed.
      A static ::after scrim sits between the stripes and the label for text
      contrast. Pseudo-element order is fixed (::before, then real children,
      then ::after) — left to default stacking that puts ::after *in front of*
@@ -195,23 +201,16 @@
      force stripes → scrim → label regardless of source order. */
   .btn-hero.btn-pole {
     position: relative;
-    overflow: hidden;
-    /* overflow:hidden alone can fail to clip a will-change/transform child to
-       the rounded corners on mobile WebKit, letting the stripes bleed past
-       the button edges — clip-path clips reliably regardless of compositing. */
-    clip-path: inset(0 round var(--radius));
     color: var(--color-foreground);
   }
   .btn-hero.btn-pole::before {
     content: "";
     position: absolute;
     z-index: 1;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
+    inset: 0;
+    border-radius: inherit;
     background-image: repeating-linear-gradient(
-      to right,
+      45deg,
       oklch(0.53 0.19 25) 0px,
       oklch(0.53 0.19 25) 16px,
       oklch(0.94 0.012 80) 16px,
@@ -220,13 +219,13 @@
       oklch(0.42 0.1 250) 48px
     );
     animation: btn-pole-scroll 2.8s linear infinite;
-    will-change: transform;
   }
   .btn-hero.btn-pole::after {
     content: "";
     position: absolute;
     z-index: 2;
     inset: 0;
+    border-radius: inherit;
     background: oklch(0.145 0.005 60 / 0.58);
   }
   .btn-hero.btn-pole > * {
@@ -235,10 +234,10 @@
   }
   @keyframes btn-pole-scroll {
     from {
-      transform: translate(-50%, -50%) rotate(45deg) translateX(0);
+      background-position: 0 0;
     }
     to {
-      transform: translate(-50%, -50%) rotate(45deg) translateX(-48px);
+      background-position: 67.88px 0;
     }
   }
   @media (prefers-reduced-motion: reduce) {
