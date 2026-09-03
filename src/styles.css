@@ -196,6 +196,10 @@
   .btn-hero.btn-pole {
     position: relative;
     overflow: hidden;
+    /* overflow:hidden alone can fail to clip a will-change/transform child to
+       the rounded corners on mobile WebKit, letting the stripes bleed past
+       the button edges — clip-path clips reliably regardless of compositing. */
+    clip-path: inset(0 round var(--radius));
     color: var(--color-foreground);
   }
   .btn-hero.btn-pole::before {

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
@@ -53,6 +54,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [showStickyCta, setShowStickyCta] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("top");
+    if (!hero) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowStickyCta(!entry.isIntersecting),
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -78,10 +91,17 @@ function Index() {
       </main>
       <SiteFooter />
 
-      {/* Sticky mobile CTA */}
+      {/* Sticky mobile CTA — hidden while the hero's own CTA is in view so the
+          two don't render as a stacked duplicate right after page load. */}
       <a
         href="#booking"
-        className="btn-base btn-hero btn-pole fixed inset-x-4 bottom-4 z-40 shadow-lg lg:hidden"
+        aria-hidden={!showStickyCta}
+        tabIndex={showStickyCta ? undefined : -1}
+        className={`btn-base btn-hero btn-pole fixed inset-x-4 bottom-4 z-40 shadow-lg transition-all duration-300 lg:hidden ${
+          showStickyCta
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-24 opacity-0"
+        }`}
       >
         <span>{upperEl("Κλείσε Ραντεβού")}</span>
       </a>
